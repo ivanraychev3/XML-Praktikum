@@ -1,78 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE game SYSTEM "Mancala.dtd">
+
 <game> 
 	<finished>0</finished>
 	<gameID>0</gameID>
 	<curplayer>1</curplayer>
 	
-	<store ID = "0"> 
+	<slot ID = "0"> 
 		<owner>1</owner> 
       	<count>0</count> 
-	</store> 
+      	<store>1</store>
+	</slot> 
 	
-	<store ID = "7"> 
+	<slot ID = "7"> 
 		<owner>2</owner> 
       	<count>0</count> 
-	</store> 
+      	<store>1</store>
+	</slot> 
 	
-	<house ID = "1"> 
+	<slot ID = "1"> 
      	<owner>1</owner> 
       	<count>4</count> 
-  	</house>
+      	<store>0</store>
+  	</slot>
   	
-  	<house ID = "2"> 
+  	<slot ID = "2"> 
      	<owner>1</owner> 
       	<count>4</count> 
-  	</house>
+      	<store>0</store>
+  	</slot>
     
-    <house ID = "3"> 
+    <slot ID = "3"> 
      	<owner>1</owner> 
       	<count>4</count> 
-  	</house>
+      	<store>0</store>
+  	</slot>
   	
-  	<house ID = "4"> 
+  	<slot ID = "4"> 
      	<owner>1</owner> 
       	<count>4</count> 
-  	</house>
+      	<store>0</store>
+  	</slot>
   	
-  	<house ID = "5"> 
+  	<slot ID = "5"> 
      	<owner>1</owner> 
       	<count>4</count> 
-  	</house>
+      	<store>0</store>
+  	</slot>
   	
-  	<house ID = "6"> 
+  	<slot ID = "6"> 
      	<owner>1</owner> 
       	<count>4</count> 
-  	</house>
+      	<store>0</store>
+  	</slot>
   	
-  	<house ID = "8"> 
+  	<slot ID = "8"> 
      	<owner>2</owner> 
       	<count>4</count> 
-  	</house>
+      	<store>0</store>
+  	</slot>
   	
-  	<house ID = "9"> 
+  	<slot ID = "9"> 
      	<owner>2</owner> 
       	<count>4</count> 
-  	</house>
+      	<store>0</store>
+  	</slot>
     
-    <house ID = "10"> 
+    <slot ID = "10"> 
      	<owner>2</owner> 
       	<count>4</count> 
-  	</house>
+      	<store>0</store>
+  	</slot>
   	
-  	<house ID = "11"> 
+  	<slot ID = "11"> 
      	<owner>2</owner> 
       	<count>4</count> 
-  	</house>
+      	<store>0</store>
+  	</slot>
   	
-  	<house ID = "12"> 
+  	<slot ID = "12"> 
      	<owner>2</owner> 
       	<count>4</count> 
-  	</house>
+      	<store>0</store>
+  	</slot>
   	
-  	<house ID = "13"> 
+  	<slot ID = "13"> 
      	<owner>2</owner> 
       	<count>4</count> 
-  	</house>
+      	<store>0</store>
+  	</slot>
   	
    <player playerID = "1">
    </player> 
