@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game> 
+	<finished>0</finished>
+	<gameID>0</gameID>
+	<curplayer>1</curplayer>
+	
+	<store ID = "0"> 
+		<owner>1</owner> 
+      	<count>0</count> 
+	</store> 
+	
+	<store ID = "7"> 
+		<owner>2</owner> 
+      	<count>0</count> 
+	</store> 
+	
+	<house ID = "1"> 
+     	<owner>1</owner> 
+      	<count>2</count> 
+		<pos>0</pos>
+  	</house>
+  	
+  	<house ID = "2"> 
+     	<owner>1</owner> 
+      	<count>4</count>
+		<pos>1</pos>
+  	</house>
+    
+    <house ID = "3"> 
+     	<owner>1</owner> 
+      	<count>4</count> 
+		<pos>2</pos>
+	</house>
+  	
+  	<house ID = "4"> 
+     	<owner>1</owner> 
+      	<count>4</count> 
+		<pos>3</pos>
+  	</house>
+  	
+  	<house ID = "5"> 
+     	<owner>1</owner> 
+      	<count>4</count> 
+		<pos>4</pos>
+  	</house>
+  	
+  	<house ID = "6"> 
+     	<owner>1</owner> 
+      	<count>4</count> 
+		<pos>5</pos>
+  	</house>
+  	
+  	<house ID = "8"> 
+     	<owner>2</owner> 
+      	<count>4</count> 
+		<pos>6</pos>
+  	</house>
+  	
+  	<house ID = "9"> 
+     	<owner>2</owner> 
+      	<count>4</count>
+		<pos>7</pos>
+  	</house>
+    
+    <house ID = "10"> 
+     	<owner>2</owner> 
+      	<count>4</count>
+		<pos>8</pos>
+  	</house>
+  	
+  	<house ID = "11"> 
+     	<owner>2</owner> 
+      	<count>4</count> 
+		<pos>9</pos>
+  	</house>
+  	
+  	<house ID = "12"> 
+     	<owner>2</owner> 
+      	<count>4</count> 
+		<pos>10</pos>
+  	</house>
+  	
+  	<house ID = "13"> 
+     	<owner>2</owner> 
+      	<count>4</count>
+		<pos>11</pos>
+  	</house>
+  	
+   <player playerID = "1">
+   </player> 
+   <player playerID = "2">
+   </player> 
+</game>  
