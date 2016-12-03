@@ -87,7 +87,7 @@
 	<!-- "*" ist wichtig für alle ungeraden elements -->
 	<xsl:strip-space elements="*"/> 
 
-	<xsl:template match="house">
+	<xsl:template match="slot">
 
 		<xsl:call-template name="iterate" />
 
@@ -128,7 +128,7 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="store[@ID=0]">
+	<xsl:template match="slot[@ID=0]">
 		<svg>
 			<text x="7%" y="36%" font-size="50" fill="black" text-anchor="middle">
 				<xsl:value-of select="count" />
@@ -136,7 +136,7 @@
 		</svg>
 	</xsl:template>
 
-	<xsl:template match="store[@ID=7]">
+	<xsl:template match="slot[@ID=7]">
 		<svg>
 			<text x="93%" y="36%" font-size="50" fill="black" text-anchor="middle">
 				<xsl:value-of select="count" />
