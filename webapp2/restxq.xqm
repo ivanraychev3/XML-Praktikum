@@ -16,7 +16,7 @@ declare
   function page:start()
   as element(Q{http://www.w3.org/1999/xhtml}html)
 {
- 
+ (:start page:)
  <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     </head>
@@ -32,7 +32,7 @@ declare
  </body>
   </html>
 };
- 
+ (:see xslt, only updating!!!:)
 declare
   %rest:path("/clicked")
   %rest:query-param("ID", "{$ID}")
@@ -54,7 +54,7 @@ declare
 };
 
 
-
+(:still only uses hard coded game id ... it creates a new game but still loads the old one:)
 declare
   %rest:path("/clickednewgame")
  
@@ -76,7 +76,7 @@ declare
   }</response>:)
 };
 
-
+(:if you wanne load the contend without double clicking:)
 
 
 declare
@@ -91,7 +91,7 @@ declare
 
 };
 
-
+(:load from startpage:)
  declare
   %rest:path("/form")
   %rest:single
@@ -109,6 +109,8 @@ declare
 			
 			
  };
+ 
+ (:load from click:)
  declare
   %rest:path("/form2")
   %rest:single
