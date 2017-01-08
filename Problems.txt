@@ -1,0 +1,33 @@
+unten ist owner 1!!!! rechter store is store of number 1
+
+//solved 1. Oposite houses not working i think it might be related to the messed up house ID problem 
+/	-xml document
+//solved1.1 both stones need to vanish! the oposite one and the moved one!
+
+
+
+// solved 2. Players turn not working
+/	-working fine
+
+
+3. Game id somehow not working everything with one fixed game ID now ..... huge fucking problem ! Also 
+in need of a good solution (or any) for xslt with multiple gameIDs
+
+4. Game over not working 
+
+
+// partly solved 5. Double click ... no clue why, but question if really nesseary to fix it 
+ 
+
+// solved 6. move stone on side player two (bottom)
+//	- Move stone over all not working
+/	-xml document updated
+
+// solved 7. Two root elements by starting a new game 
+
+// partly solved 8. you have to skipp the oposite store, if you hit it with your stones 
+
+// partly solved 9. you can't start with clickhouse 2 sometimes 7 not working too, no clue
+	- by problems resart your http server i think 
+
+10. Game logic not working for more then 12 stones in one house!
