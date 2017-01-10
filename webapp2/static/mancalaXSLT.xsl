@@ -78,9 +78,29 @@
 			 <!-- test -->
 			
 			<svg>
-			<circle cx="90%" cy="80%" r="5%" stroke="black" fill="black" onclick="loadcon()" />
+			<rect x="85%" y="75%" width="10%" height="20%" stroke="black" fill="black" onclick="loadcon()" />
 			
 			</svg>
+			<xsl:if test="//finished = 1">
+			<svg>
+			<text x="90%" y="85%" font-size="20" fill="white" text-anchor="middle" >Game Over</text>
+			</svg>
+			</xsl:if>
+			
+			<xsl:if test="//finished = 2">
+			<svg>
+			<text x="90%" y="85%" font-size="20" fill="white" text-anchor="middle" >Game Over</text>
+			</svg>
+			</xsl:if>
+			
+			<svg>
+		      <text x="90%" y="82%" font-size="20" fill="white" text-anchor="middle" > <xsl:value-of select="/*/@gameID"/> </text>
+			
+			</svg>
+		
+		<svg>
+		      <text x="90%" y="91%" font-size="50" fill="white" text-anchor="middle" > <xsl:value-of select="//curplayer"/> </text>
+		</svg>
 			
 		    
 		    <!-- Stores -->
@@ -132,12 +152,18 @@
 	</html>
 	</xsl:template>
 	
+	<!-- start of the finished screen not working and not even thought through change it -->
+
+
+	
+	
 	
 	<xsl:template match="slot">
 	 
 	 	<xsl:call-template name="iterate"/>
 	 	
     </xsl:template>
+	
     
    <xsl:template name="iterate">
 		<xsl:param name="count2">
@@ -190,15 +216,6 @@
     	<ref id="gameID" param="count2" default="0"/>-->
   	</xsl:template>
 	
-	<!-- start of the finished screen not working and not even thought through change it -->
-	<xsl:template match= "finished" >
-	<xsl:if test="finished = 1">
-    	<svg>
-	<text x="50%" y="50%" font-size="50" fill="black" text-anchor="middle" >Game Over</text>
-		</svg>
-		</xsl:if>
-  	</xsl:template>
-
 	
 	<xsl:template match="slot[@ID=13]">
     	<svg>
