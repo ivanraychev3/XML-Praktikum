@@ -1,3 +1,4 @@
+
 module namespace m = "mancala/model"; 
 import module namespace h = "mancala/helpers" at "mancalaHelpers.xqm";
 
@@ -26,6 +27,14 @@ declare function m:newGame() as element(game) {
 declare %updating function m:insertnewGame() {
   insert node m:newGame() as last into $m:instances
   };
+  
+    
+declare function m:findlastID() as xs:double{
+  
+   max($m:instances//game/@gameID)
+  
+  };
+
 
 
 declare %updating function m:insertGame($game as element(game)) {
@@ -54,11 +63,9 @@ declare %private function m:finishedCheck($gameID) {
   else 
       0
 };
-
 declare function m:finishedUpdate($gameID) {
   (::)
 };
-
 (: Self Explanatory :)
 declare %private function m:removeStones($id , $gameID) {
   copy $c := m:getHouse($id, $gameID)
@@ -66,7 +73,6 @@ declare %private function m:removeStones($id , $gameID) {
     replace value of node $c/count with 0
   return $c 
 };
-
 declare %private function m:checkPlayerTurn($clickedHouseID, $gameID) {
   let $s := $m:instances//game[@gameID = $gameID]
   let $c := $m:instances//game[@gameID=$gameID]//slot[@ID = $clickedHouseID]/data(count)
@@ -82,7 +88,6 @@ declare %private function m:checkPlayerTurn($clickedHouseID, $gameID) {
           else 
               <curplayer>1</curplayer>
 };
-
 (: Returns the new game state in xml format after the player clicks on a house, but 
     does not consider the opposite house rule // This is done by the 'updatedGameState'
     method, which does the final check and applies the opposite house rule:)
@@ -96,23 +101,22 @@ declare function m:intermediateGameState($clickedHouseID, $gameID) {
     {m:moveStones($clickedHouseID, $gameID)}
     </game>
 };
-
-
 (: Receives as input the output of m:intermediateGameState and checks if the 
    opposite house rule applies. Returns the xml representation of the game state
-   after a single player move 
+   after a single player move fixed opposite house 
    changed by jan :)
 declare function m:finalGameState ($game as element(game)) {
   let $clickedHouse := $game//slot[@ID = $game/@clickedHouseID]
   let $landedHouse := $game//slot[@ID = ($game/@clickedHouseID + $game/@lastCount)]
   let $oppositeHouse := $game//slot[@ID = 12 - $landedHouse/@ID]
   return
-  
+	
     if ($clickedHouse/owner = $landedHouse/owner and $landedHouse/data(count) = 1 and $oppositeHouse/data(count) != 0) then 
         copy $c := $game
         modify 
           let $oppositeHouse := $c//slot[@ID = 12 - $landedHouse/@ID]
 		  let $landedHouse2 := $c//slot[@ID = ($game/@clickedHouseID + $game/@lastCount)]
+		  let $gameover := $c
           let $store := 
               if($clickedHouse/owner = 1) then 
                   $c//slot[@ID = 6] 
@@ -123,11 +127,27 @@ declare function m:finalGameState ($game as element(game)) {
             replace value of node $store/count with $store/data(count) + $oppositeHouse/data(count) +1,
             replace value of node $oppositeHouse/count with 0,
 			replace value of node $landedHouse2/count with 0
+			
+			
+(:,
+			
+			if (m:precheckGameOver($c[@gameID])!= 0) then 
+				replace value of node $gameover with m:checkGameOver($gameover)
+			else
+			 replace node $c with $c  
+			 
+			 
+			replace value of node $gameover with m:checkGameOver($gameover)
+			:)
           ) 
-        return $c                   
+        return $c                
     else 
+	
 	$game
 };
+
+
+
 
   (:Applies the changes of the updated game state to the database
   eddited by jan see old versions :)
@@ -144,7 +164,7 @@ declare %updating function m:executeMove($clickedHouseID,$gameID) {
   
   if($s/curplayer = $m:instances//game[@gameID=$gameID]//slot[@ID = $clickedHouseID]/data(owner)) then  
   
-	replace node $m:instances//game[@gameID = $gameID] with (m:finalGameState(m:intermediateGameState($clickedHouseID, $gameID)))
+	(replace node $m:instances//game[@gameID = $gameID] with (m:finalGameState((m:intermediateGameState($clickedHouseID, $gameID)))),m:finalGameOverCheck($gameID))
   
   else 
 	
@@ -152,11 +172,50 @@ declare %updating function m:executeMove($clickedHouseID,$gameID) {
   
 };
 
+declare %updating function m:finalGameOverCheck($gameID) {
+		if($m:instances//game[@gameID = $gameID]/data(finished) = 1) then 
+        (replace value of node $m:instances//game[@gameID = $gameID]//slot[@ID = 13]/count with 
+        (48 - $m:instances//game[@gameID = $gameID]//slot[@ID = 6]/data(count)),
+        m:emptyRow(2,$gameID))
+    else if($m:instances//game[@gameID = $gameID]//data(finished) = 2) then 
+        (replace value of node $m:instances//game[@gameID = $gameID]//slot[@ID = 6]/count with 
+        (48 - $m:instances//game[@gameID = $gameID]//slot[@ID = 13]/data(count)),
+         m:emptyRow(1,$gameID))
+    else 
+        replace node $m:instances with $m:instances
+		
+		
+		
+		
+		
+		
+		
+		
+		(:let $s := $game[@gameID = $gameID]
+		return 
+		if ($s/finished =1 or $s/finished =2) then 
+		replace node $game with (m:checkGameOver($gameID)) 
+		else 
+		replace node $game with $game
+	
+		
+		  if ($game[@gameID = $gameID]/finished = 1 or $game[@gameID = $gameID]/finished = 2) then 
+				replace node $game with (m:checkGameOver($gameID))
+			else
+			 replace node $game with $game   
+		:)
+		
+		
+};
+
+
 (: by jan for checking if m:gameGameOver() should be invoked :)
 declare %updating function m:executeMove2($gameID) {
 let $s := $m:instances//game[@gameID = $gameID]
 return replace node $m:instances//game[@gameID = $gameID]/slot[@ID=1]  with $s/slot[@ID=1] 
 };
+
+
 
 declare %private function m:precheckGameOver($gameID) {
 let $s := $m:instances//game[@gameID = $gameID]
@@ -166,9 +225,9 @@ return
     else 
          0		
 		};
-
-
-
+		
+		
+		
 declare %updating function m:checkGameOver($gameID) {
   if($m:instances//game[@gameID = $gameID]/data(finished) = 1) then 
         (replace value of node $m:instances//game[@gameID = $gameID]//slot[@ID = 13]/count with 
@@ -182,14 +241,20 @@ declare %updating function m:checkGameOver($gameID) {
         replace node $m:instances with $m:instances
 };
 
+
+
+
 declare %updating function m:emptyRow($owner, $gameID) {
   for $s in $m:instances//game[@gameID=$gameID]//slot[@ID != 13 and @ID != 6]
   where $s/owner = $owner
   return replace value of node $s/count with 0
 };
+
+
   (:Empties the clicked house and then moves the stones accordingly
     Returns a sequence of all the slots (houses and stores) with updated counts
   changed by jan for skipp oposite store count increase not done after hitting the opposite store:)
+ 
 declare %private function m:moveStones($clickedHouseID, $gameID) {
   let $c := $m:instances//game[@gameID=$gameID]//slot[@ID = $clickedHouseID]/data(count)
   for $s in $m:instances//game[@gameID = $gameID]//slot
@@ -202,7 +267,7 @@ declare %private function m:moveStones($clickedHouseID, $gameID) {
 			(:not done jet y let $c not working but dosn't matter because we have not figgured 
 			out how to set more the 12 stones then you have to increade the count after you hit the opposite store:)
 		else if ($s[@type = 'store'] and $m:instances//game[@gameID=$gameID]//slot[@ID = $clickedHouseID]/data(owner) != $s/data(owner))then 
-			let $c := $m:instances//game[@gameID=$gameID]//slot[@ID = $clickedHouseID]/data(count) +100
+			let $c := $m:instances//game[@gameID=$gameID]//slot[@ID = $clickedHouseID]/data(count) +1
 			return $s
         else if ($s/@ID = $clickedHouseID) then 
             m:removeStones($clickedHouseID, $gameID)  
@@ -233,6 +298,3 @@ declare %private function m:moveStones($clickedHouseID, $gameID) {
             )
             return $c     
 };
-
-
-

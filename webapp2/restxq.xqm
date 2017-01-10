@@ -39,7 +39,7 @@ declare
   %rest:query-param("gameID", "{$gameID}")
   
   %updating function page:clicked(
-    $ID as xs:int, $gameID as xs:int) 
+    $ID as xs:int, $gameID as xs:double) 
     (:as element(response):)
 	{
 	
@@ -66,7 +66,7 @@ declare
 	:)
 	
 	
-	(db:output(page:search(0)),(m:insertGame(m:newGame())))
+	(db:output(page:search(m:findlastID())),(m:insertGame(m:newGame())))
 		
 		
      
@@ -86,7 +86,7 @@ declare
     
 	{
 	
-	page:search(0)
+	page:search(1)
 		
 
 };
@@ -98,7 +98,7 @@ declare
   
  function page:home() {
 	<ul>{
-		let $in := (db:open('mancalaDB2'))
+		let $in := (db:open("mancalaDB2")//collection/game[@gameID=1])
 		let $style := doc('static/mancalaXSLT.xsl')
 		
 		for $result in xslt:transform($in, $style)
@@ -109,13 +109,14 @@ declare
 			
 			
  };
- 
+
+  
  (:load from click:)
  declare
   %rest:path("/form2")
   %rest:single
   %rest:query-param("gameID","{$gameID}")
- function page:search($gameID as xs:integer) {
+ function page:search($gameID as xs:double) {
 	<ul>{
 		let $in := (db:open("mancalaDB2")//collection/game[@gameID=$gameID])
 		let $style := doc('static/mancalaXSLT.xsl')

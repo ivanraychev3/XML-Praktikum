@@ -15,12 +15,11 @@
 		<head>
 		
 		<script type="text/javascript">
-				function clickhouse(ID, gameID)
+				function clickhouse(ID)
 			{
-			
+			  var gameIDlocal = '<xsl:value-of select="/*/@gameID"/>';
 			  var loc= window.location;
-
-			  window.location=("http://localhost:8984/clicked?ID="+ID+"&amp;gameID="+gameID);
+			  window.location=("http://localhost:8984/clicked?ID="+ID+"&amp;gameID="+gameIDlocal);
 			  
 			 
 			}
@@ -28,12 +27,8 @@
 			<!-- not really used-->
 				function loadcon()
 			{
-				
 				var loc2= window.location;
 				window.location="http://localhost:8984/loadcon";
-				
-				
-				
 			}
 			
 				function clicknewgame()
@@ -76,7 +71,7 @@
 		        <text x="50%" y="76%" font-size="50" fill="darkred" text-anchor="middle" >MANCALA</text>
 		    </svg>
 		    <g>
-		        <use id="btn-newgame" xlink:href="#button" x="42.5%" onclick="clicknewgame(0)" />
+		        <use id="btn-newgame" xlink:href="#button" x="42.5%" onclick="clicknewgame()" />
 		        <text x="50%" y="81%" font-size="25" fill="black" text-anchor="middle" >NEW GAME</text>
 		    </g>
 			
@@ -94,19 +89,19 @@
 		    
 		    <!-- Houses 
 			hard coded gameIds this needs to be changed -->
-			<use id="house-p1-1" xlink:href="#house-p1" x="18.75%" onclick="clickhouse(0,0)"/>
-		    <use id="house-p1-2" xlink:href="#house-p1" x="31.25%" onclick="clickhouse(1,0)"/>
-		    <use id="house-p1-3" xlink:href="#house-p1" x="43.75%" onclick="clickhouse(2,0)"/>
-		    <use id="house-p1-4" xlink:href="#house-p1" x="56.25%" onclick="clickhouse(3,0)"/>
-		    <use id="house-p1-5" xlink:href="#house-p1" x="68.75%" onclick="clickhouse(4,0)"/>
-		    <use id="house-p1-6" xlink:href="#house-p1" x="81.25%" onclick="clickhouse(5,0)"/>
+			<use id="house-p1-1" xlink:href="#house-p1" x="18.75%" onclick="clickhouse(0)"/>
+		    <use id="house-p1-2" xlink:href="#house-p1" x="31.25%" onclick="clickhouse(1)"/>
+		    <use id="house-p1-3" xlink:href="#house-p1" x="43.75%" onclick="clickhouse(2)"/>
+		    <use id="house-p1-4" xlink:href="#house-p1" x="56.25%" onclick="clickhouse(3)"/>
+		    <use id="house-p1-5" xlink:href="#house-p1" x="68.75%" onclick="clickhouse(4)"/>
+		    <use id="house-p1-6" xlink:href="#house-p1" x="81.25%" onclick="clickhouse(5)"/>
 			
-		    <use id="house-p2-1" xlink:href="#house-p2" x="18.75%" onclick="clickhouse(12,0)"/>
-		    <use id="house-p2-2" xlink:href="#house-p2" x="31.25%" onclick="clickhouse(11,0)"/>
-		    <use id="house-p2-3" xlink:href="#house-p2" x="43.75%" onclick="clickhouse(10,0)"/>
-		    <use id="house-p2-4" xlink:href="#house-p2" x="56.25%" onclick="clickhouse(9,0)"/>
-		    <use id="house-p2-5" xlink:href="#house-p2" x="68.75%" onclick="clickhouse(8,0)"/>
-		    <use id="house-p2-6" xlink:href="#house-p2" x="81.25%" onclick="clickhouse(7,0)"/>
+		    <use id="house-p2-1" xlink:href="#house-p2" x="18.75%" onclick="clickhouse(12)"/>
+		    <use id="house-p2-2" xlink:href="#house-p2" x="31.25%" onclick="clickhouse(11)"/>
+		    <use id="house-p2-3" xlink:href="#house-p2" x="43.75%" onclick="clickhouse(10)"/>
+		    <use id="house-p2-4" xlink:href="#house-p2" x="56.25%" onclick="clickhouse(9)"/>
+		    <use id="house-p2-5" xlink:href="#house-p2" x="68.75%" onclick="clickhouse(8)"/>
+		    <use id="house-p2-6" xlink:href="#house-p2" x="81.25%" onclick="clickhouse(7)"/>
 		    		    
 		    <!-- Example seeds -->
 		    <!-- Number of seeds in stores represented as numbers -->
@@ -186,10 +181,13 @@
 	
 	<!-- not really working my start to try to get the actual game Id out ouf the xml so the clickhouse methode can use it-->
 	<xsl:template match= "" >
-	<xsl:param name="count2">
+	<svg>
+		      <text x="90%" y="82%" font-size="50" fill="white" text-anchor="middle" > <xsl:value-of select="/*/@gameID"/> </text>
+		</svg>
+	<!--<xsl:param name="count2">
 			<xsl:value-of select="@gameID" />
 		</xsl:param>
-    	<ref id="gameID" param="count2" default="0"/>
+    	<ref id="gameID" param="count2" default="0"/>-->
   	</xsl:template>
 	
 	<!-- start of the finished screen not working and not even thought through change it -->
