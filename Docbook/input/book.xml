@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "../docbook-xml-4.5/docbookx.dtd">
-<article>
-        <articleinfo>
+
+<book lang = "de">
+        <bookinfo>
                 <title>Mancala Game by Unicode</title>
                 <author>
                         <firstname>Joshua</firstname>
@@ -20,8 +21,12 @@
                         <surname>keineAhnung</surname>
                 </author>
                 <edition>11.Jan Version 0.1</edition>
- 		</articleinfo>
+ 		</bookinfo>
 
+
+<svg xmlns ="http://www.w3.org/2000/svg" width ="100%" height="5" version="1.1">
+ <line x1="	1%" x2="99%" y1="2" y2="2" stroke="grey" stroke-width="2" stroke-linecap="butt"/>
+</svg>
         <chapter id ="Mancala">
 			<title>Mancala</title>
 				<sect1 id = "Spiel" start-indent="10mm" end-indent="10mm" text-indent="-10mm">
@@ -58,8 +63,10 @@
 						<para>Bla</para>
 				</sect1>
         </chapter>
-
-        <chapter id ="UML">
+<svg xmlns ="http://www.w3.org/2000/svg" width ="100%" height="5" version="1.1">
+ <line x1="	1%" x2="99%" y1="2" y2="2" stroke="grey" stroke-width="2" stroke-linecap="butt"/>
+</svg>
+        <chapter  id ="UML">
 			<title>UML-Diagramme</title>
 				<sect1 id = "Klassendiagramm">
 					<title>Klassendiagramm</title>
@@ -88,6 +95,9 @@
 						<para>Bla</para>
 				</sect1>
         </chapter>
+<svg xmlns ="http://www.w3.org/2000/svg" width ="100%" height="5" version="1.1">
+ <line x1="	1%" x2="99%" y1="2" y2="2" stroke="grey" stroke-width="2" stroke-linecap="butt"/>
+</svg>
         <chapter id ="Code">
 			<title>Code</title>
 				<sect1 id = "Mancala.dtd">
@@ -173,4 +183,4 @@
 						</sect2>
 				</sect1>
         </chapter>
-</article>
+</book>
