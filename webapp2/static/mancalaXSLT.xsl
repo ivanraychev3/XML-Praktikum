@@ -81,7 +81,7 @@
 			<rect x="85%" y="75%" width="10%" height="20%" stroke="black" fill="black" onclick="loadcon()" />
 			
 			</svg>
-			<xsl:if test="//finished = 1">
+			<xsl:if test="//finished = 0">
 			<svg>
 			<text x="90%" y="85%" font-size="20" fill="white" text-anchor="middle" >Game Over</text>
 			</svg>
@@ -92,16 +92,22 @@
 			<text x="90%" y="85%" font-size="20" fill="white" text-anchor="middle" >Game Over</text>
 			</svg>
 			</xsl:if>
+			<svg>
+		      <text x="90%" y="79%" font-size="15" fill="white" text-anchor="middle" > GameID:</text>
+			
+			</svg>
 			
 			<svg>
 		      <text x="90%" y="82%" font-size="20" fill="white" text-anchor="middle" > <xsl:value-of select="/*/@gameID"/> </text>
 			
 			</svg>
-		
-		<svg>
-		      <text x="90%" y="91%" font-size="50" fill="white" text-anchor="middle" > <xsl:value-of select="//curplayer"/> </text>
-		</svg>
-			
+			<svg>
+				  <text x="89%" y="91%" font-size="40" fill="white" text-anchor="middle" > Player:</text>
+			</svg>
+			<svg>
+				  <text x="94%" y="91%" font-size="50" fill="white" text-anchor="middle" > <xsl:value-of select="//curplayer"/> </text>
+			</svg>
+				
 		    
 		    <!-- Stores -->
 		    <use id="store-p1" xlink:href="#store" x="7%" y="35%" stroke="black" fill="saddlebrown" />
