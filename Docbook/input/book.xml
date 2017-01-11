@@ -19,16 +19,158 @@
                         <firstname>Ivan</firstname>
                         <surname>keineAhnung</surname>
                 </author>
+                <edition>11.Jan Version 0.1</edition>
  		</articleinfo>
 
-        <chapter>
-			<h2> Mancala</h2>
+        <chapter id ="Mancala">
+			<title>Mancala</title>
+				<sect1 id = "Spiel" start-indent="10mm" end-indent="10mm" text-indent="-10mm">
+					<title>Spiel</title>
+						<para start-indent="10mm" end-indent="10mm" text-indent="-10mm"> Worum geht es in dem Spiel, Historie?</para>
+						<sect2>
+							<title>Spielarten</title>
+								<para>blub</para>
+						</sect2>
+						<sect2>
+							<title>Historie</title>
+								<para>blub</para>
+							</sect2>
+				</sect1>
+				<sect1 id ="Spielregeln">
+					<title>Spielregeln</title>
+						<para>Erklräung der Spielregeln</para>
+							<sect2>
+								<title>Spielablauf</title>
+									<para>blub</para>
+							</sect2>
+							<sect2>
+								<title>Gewinner</title>
+									<para>blub</para>
+							</sect2>
+							<sect2>
+								<title>Sonderregeln</title>
+									<para>blub</para>
+							</sect2>
+							
+				</sect1>
+				<sect1 id ="Sonstiges">
+					<title>Sonstiges</title>
+						<para>Bla</para>
+				</sect1>
         </chapter>
 
-        <chapter>
-			<tgroup cols='2' align='left' colsep='1' rowsep='1'>
-                <colspec colname='c1'  colwidth="1*"/>
-                <colspec colname='c2'  colwidth="1*"/>
-             </tgroup>
+        <chapter id ="UML">
+			<title>UML-Diagramme</title>
+				<sect1 id = "Klassendiagramm">
+					<title>Klassendiagramm</title>
+						<sect2>
+						<title>Klassendiagramm</title>
+						<para>Hier Klassen Diagram</para>
+						</sect2>
+						<sect2>
+								<title>Erlärung</title>
+									<para>blub</para>
+						</sect2>
+				</sect1>
+				<sect1 id ="Sequenzdiagramm">
+					<title>Sequenzdiagramm</title>
+						<sect2>
+							<title>Sequenzdiagramm</title>
+								<para>Hier Sequenzdiagram +Erklärung</para>
+						</sect2>
+						<sect2>
+							<title>Erklärung</title>
+								<para>blub</para>
+						</sect2>			
+				</sect1>
+				<sect1 id ="Sonstiges">
+					<title>Andere Diagremme?</title>
+						<para>Bla</para>
+				</sect1>
+        </chapter>
+        <chapter id ="Code">
+			<title>Code</title>
+				<sect1 id = "Mancala.dtd">
+					<title>Mancala.dtd</title>
+						<sect2>
+						<title>Code von Game</title>
+							<para>Hier ein bisschen code von der Mancala.dtd</para>
+							<para>Erklärung</para>
+						</sect2>
+						<sect2>
+								<title>Code von Slot</title>
+									<para>Hier ein bisschen code von der Mancala.dtd</para>
+									<para>Erklärung</para>
+						</sect2>
+				</sect1>
+				<sect1 id ="MancalaGameState.xml">
+					<title>MancalaGameState.xml</title>
+						<sect2>
+							<title>Header</title>
+								<para>Hier Code vom Header</para>
+								<para>Erklärung</para>
+						</sect2>
+						<sect2>
+							<title>House</title>
+								<para>Hier Code von House</para>
+								<para>Erklärung</para>
+						</sect2>	
+						<sect2>
+							<title>Slot</title>
+								<para>Hier Code vom Slot</para>
+								<para>Erklärung</para>
+						</sect2>	
+						<sect2>
+							<title>Default und Game1</title>
+								<para>Hier Code vom Default und Game1</para>
+								<para>Erklärung</para>
+						</sect2>
+				</sect1>
+				<sect1 id ="MancalaXSLT.xsl">
+					<title>MancalaXSLT.xsl</title>
+						<sect2>
+							<title>Header</title>
+								<para>Hier Code vom Header</para>
+								<para>Erklärung</para>
+						</sect2>
+						<sect2>
+							<title>loadcon()</title>
+								<para>Hier Code von loadcon()</para>
+								<para>Erklärung</para>
+						</sect2>	
+						<sect2>
+							<title>Body</title>
+								<para>Hier Code vom Body</para>
+								<para>Erklärung</para>
+						</sect2>	
+						<sect2>
+							<title>Und so weiter</title>
+								<para>Hier Code von...</para>
+								<para>Erklärung</para>
+						</sect2>
+				</sect1>
+				<sect1 id ="andere datei">
+					<title>nächste Datei...</title>
+						<sect2>
+							<title>Header</title>
+								<para>Hier Code vom Header</para>
+								<para>Erklärung</para>
+						</sect2>
+						<sect2>
+							<title>Methode</title>
+								<para>Hier Code von Methode</para>
+								<para>Erklärung</para>
+						</sect2>	
+						<sect2>
+							<title>Body</title>
+								<para>Hier Code vom Body</para>
+								<para>Erklärung</para>
+						</sect2>	
+						<sect2>
+							<title>Und so weiter</title>
+								<para>Hier Code von...</para>
+								<para>Erklärung</para>
+						</sect2>
+				</sect1>
         </chapter>
 </article>
