@@ -62,9 +62,8 @@ declare %private function m:finishedCheck($gameID) {
   else 
       0
 };
-declare function m:finishedUpdate($gameID) {
-  (::)
-};
+
+
 (: Self Explanatory :)
 declare %private function m:removeStones($id , $gameID) {
   copy $c := m:getHouse($id, $gameID)
@@ -97,6 +96,7 @@ declare function m:intermediateGameState($clickedHouseID, $gameID) {
     <game gameID="{$gameID}" lastCount = "{$c}" clickedHouseID = "{$clickedHouseID}">
     <finished>{m:finishedCheck($gameID)}</finished>
     {m:checkPlayerTurn($clickedHouseID, $gameID)}
+	<winner>0</winner>
     {m:moveStones($clickedHouseID, $gameID)}
     </game>
 };
@@ -126,18 +126,43 @@ declare function m:finalGameState ($game as element(game)) {
             replace value of node $store/count with $store/data(count) + $oppositeHouse/data(count) +1,
             replace value of node $oppositeHouse/count with 0,
 			replace value of node $landedHouse2/count with 0
-			
-			
-(:,
-			
-			if (m:precheckGameOver($c[@gameID])!= 0) then 
-				replace value of node $gameover with m:checkGameOver($gameover)
-			else
-			 replace node $c with $c  
-			 
-			 
-			replace value of node $gameover with m:checkGameOver($gameover)
-			:)
+          ) 
+        return $c                
+    else 
+	
+	$game
+};
+
+declare function m:finalGameOver($game as element(game)) {
+  let $countstore1 := $game//slot[@ID = 6]/count
+  let $countstore2 := $game//slot[@ID = 13]/count
+  let $added := (48 - $countstore1 - $countstore2)
+  return
+	
+    if ($game/data(finished) != 0) then 
+        copy $c := $game
+        modify 
+          let $store1 := if($c/data(finished) = 2) then 
+									$c//slot[@ID =6]/count 
+						 else 
+									$c//slot[@ID =6]/data(count) -$added
+									
+	let $store2 :=	if($c/data(finished) = 1) then 
+									$c//slot[@ID =13]/count 
+						 else 
+									$c//slot[@ID =13]/data(count) -$added	
+									
+		let $higher := if ( $store1 > $store2 + $added) then 
+									$c/data(winner) + 1
+						else 
+						$c/data(winner) +2
+							
+	
+									
+          return ( 
+			replace value of node $c//slot[@ID =6]/count with $store1 + $added,
+			replace value of node $c//slot[@ID =13]/count with $store2 + $added,
+			replace value of node $c/winner with $higher
           ) 
         return $c                
     else 
@@ -151,25 +176,37 @@ declare function m:finalGameState ($game as element(game)) {
   (:Applies the changes of the updated game state to the database
   eddited by jan see old versions :)
 declare %updating function m:executeMove($clickedHouseID,$gameID) {
-  let $s := $m:instances//game[@gameID = $gameID]
-  let $c := $m:instances//game[@gameID=$gameID]//slot[@ID = $clickedHouseID]/data(count)
-  return 
  
-  if ($c = 0) then 
   
-  replace node $m:instances//game[@gameID = $gameID] with $m:instances//game[@gameID = $gameID]
+  if ($m:instances//game[@gameID = $gameID]/finished = 0) then 
+   (m:helpgameover($clickedHouseID,$gameID))
+   else 
+   m:checkGameOver($gameID)
+   
+  
+};
+
+declare %updating function m:helpgameover($clickedHouseID,$gameID) {
+	let $s := $m:instances//game[@gameID = $gameID]
+  let $c := $m:instances//game[@gameID=$gameID]//slot[@ID = $clickedHouseID]/data(count)
+  return
+  
+  if ($c = 0) then 
+
+  replace node $m:instances//game[@gameID = $gameID] with (m:finalGameOver($m:instances//game[@gameID = $gameID]))
   
   else
   
   if($s/curplayer = $m:instances//game[@gameID=$gameID]//slot[@ID = $clickedHouseID]/data(owner)) then  
   
-	(replace node $m:instances//game[@gameID = $gameID] with (m:finalGameState((m:intermediateGameState($clickedHouseID, $gameID)))))
+	(replace node $m:instances//game[@gameID = $gameID] with (m:finalGameOver(m:finalGameState((m:intermediateGameState($clickedHouseID, $gameID))))))
   
   else 
 	
 	 replace node $m:instances//game[@gameID = $gameID] with $m:instances//game[@gameID = $gameID]
   
 };
+
 
 declare %updating function m:finalGameOverCheck($gameID) {
 		if($m:instances//game[@gameID = $gameID]/data(finished) = 1) then 

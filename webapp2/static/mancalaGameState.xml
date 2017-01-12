@@ -3,6 +3,7 @@
 <game gameID = "0" lastCount = "0" clickedHouseID = "0"> 
 	<finished>0</finished>
 	<curplayer>1</curplayer>
+	<winner>0</winner>
 	
 	<slot type = "store" ID = "13"> 
 		<owner>2</owner> 
@@ -91,6 +92,7 @@
 <game gameID = "1" lastCount = "0" clickedHouseID = "0"> 
 	<finished>0</finished>
 	<curplayer>1</curplayer>
+	<winner>0</winner>
 	
 	<slot type = "store" ID = "13"> 
 		<owner>2</owner> 

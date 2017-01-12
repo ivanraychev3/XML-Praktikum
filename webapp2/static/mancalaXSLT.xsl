@@ -19,16 +19,23 @@
 			{
 			  var gameIDlocal = '<xsl:value-of select="/*/@gameID"/>';
 			  var loc= window.location;
+			  loadcon();
+			 
 			  window.location=("http://localhost:8984/clicked?ID="+ID+"&amp;gameID="+gameIDlocal);
-			  
 			 
 			}
+			function hi(){
+			alert('hi');
+			}
 			
-			<!-- not really used-->
+
 				function loadcon()
 			{
+			 
 				var loc2= window.location;
+				var gameIDlocal = '<xsl:value-of select="/*/@gameID"/>';
 				window.location="http://localhost:8984/loadcon";
+				
 			}
 			
 				function clicknewgame()
@@ -81,17 +88,7 @@
 			<rect x="85%" y="75%" width="10%" height="20%" stroke="black" fill="black" onclick="loadcon()" />
 			
 			</svg>
-			<xsl:if test="//finished = 0">
-			<svg>
-			<text x="90%" y="85%" font-size="20" fill="white" text-anchor="middle" >Game Over</text>
-			</svg>
-			</xsl:if>
 			
-			<xsl:if test="//finished = 2">
-			<svg>
-			<text x="90%" y="85%" font-size="20" fill="white" text-anchor="middle" >Game Over</text>
-			</svg>
-			</xsl:if>
 			<svg>
 		      <text x="90%" y="79%" font-size="15" fill="white" text-anchor="middle" > GameID:</text>
 			
@@ -115,7 +112,7 @@
 		    
 		    <!-- Houses 
 			hard coded gameIds this needs to be changed -->
-			<use id="house-p1-1" xlink:href="#house-p1" x="18.75%" onclick="clickhouse(0)"/>
+			<use id="house-p1-1" xlink:href="#house-p1" x="18.75%" onclick="loadcon(),clickhouse(0)"/>
 		    <use id="house-p1-2" xlink:href="#house-p1" x="31.25%" onclick="clickhouse(1)"/>
 		    <use id="house-p1-3" xlink:href="#house-p1" x="43.75%" onclick="clickhouse(2)"/>
 		    <use id="house-p1-4" xlink:href="#house-p1" x="56.25%" onclick="clickhouse(3)"/>
@@ -128,13 +125,53 @@
 		    <use id="house-p2-4" xlink:href="#house-p2" x="56.25%" onclick="clickhouse(9)"/>
 		    <use id="house-p2-5" xlink:href="#house-p2" x="68.75%" onclick="clickhouse(8)"/>
 		    <use id="house-p2-6" xlink:href="#house-p2" x="81.25%" onclick="clickhouse(7)"/>
+			
+			<!-- Number of seeds in houses represented as black dots -->
+		   
+		    <xsl:apply-templates />
+			
+			<xsl:if test="//winner = 1">
+				<svg>
+						<rect x="13%" rx="20" ry="20" width="74%" height="70%" fill="black" stroke="black" stroke-width="5"/>
+					</svg>
+				<svg>
+				<text x="90%" y="85%" font-size="20" fill="white" text-anchor="middle" >Game Over</text>
+				</svg>
+				
+				<svg>
+				<text x="50%" y="35%" font-size="50" fill="white" text-anchor="middle" >Player 1 Won!</text>
+				</svg>
+				
+				<svg>
+				<text x="50%" y="60%" font-size="20" fill="white" text-anchor="middle" >Start a new Game!</text>
+				</svg>
+				
+			</xsl:if>
+			
+			
+			
+			
+			<xsl:if test="//winner = 2">
+				<svg>
+						<rect x="13%" rx="20" ry="20" width="74%" height="70%" fill="black" stroke="black" stroke-width="5"/>
+					</svg>
+				<svg>
+				<text x="90%" y="85%" font-size="20" fill="white" text-anchor="middle" >Game Over</text>
+				
+				</svg>
+				<svg>
+				<text x="50%" y="35%" font-size="50" fill="white" text-anchor="middle" >Player 2 Won!</text>
+				</svg>
+				<svg>
+				<text x="50%" y="60%" font-size="20" fill="white" text-anchor="middle" >Start a new Game! </text>
+				</svg>
+				
+			</xsl:if>
 		    		    
 		    <!-- Example seeds -->
 		    <!-- Number of seeds in stores represented as numbers -->
 		    
-		    <!-- Number of seeds in houses represented as black dots -->
-		   
-		    <xsl:apply-templates />
+		    
 			</svg>
 			
 			<!-- test2 skript-->

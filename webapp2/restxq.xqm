@@ -43,7 +43,7 @@ declare
     (:as element(response):)
 	{
 	
-	(db:output(page:search($gameID)),m:executeMove($ID,$gameID))
+	db:output(page:search($gameID)),m:executeMove($ID,$gameID)
 	
 		
 	
@@ -67,13 +67,7 @@ declare
 	
 	
 	(db:output(page:search(m:findlastID())),(m:insertGame(m:newGame())))
-		
-		
-     
-		
-  (:<response>{
-	{$fGameState}
-  }</response>:)
+
 };
 
 (:if you wanne load the contend without double clicking:)
@@ -86,7 +80,7 @@ declare
     
 	{
 	
-	page:search(1)
+	page:search(0)
 		
 
 };
