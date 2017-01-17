@@ -6,7 +6,7 @@
                 <title>Mancala Game by Unicode</title>
                 <author>
                         <firstname>Joshua</firstname>
-                        <surname>Arnold</surname>
+                        <surname>de Hao Arnold</surname>
                 </author>
                  <author>
                         <firstname>Jan</firstname>
@@ -17,21 +17,35 @@
                         <surname>Hagemann</surname>
                 </author>
                  <author>
-                        <firstname>Ivan</firstname>
-                        <surname>keineAhnung</surname>
+                        <firstname>Ivan Stefanov</firstname>
+                        <surname>Raychev</surname>
                 </author>
-                <edition>11.Jan Version 0.1</edition>
+                <edition>16.Jan Version 0.2</edition>
  		</bookinfo>
+	<svg xmlns ="http://www.w3.org/2000/svg" width ="100%" height="5" version="1.1">
+ 		<line x1="	1%" x2="99%" y1="2" y2="2" stroke="grey" stroke-width="2" stroke-linecap="butt"/>
+	</svg>
+		<chapter id ="Reflektion">
+			<title>Reflektion</title>
+				<sect1 id = "Team">
+					<title>...vom Team</title>
+					<para>bakshdiüdis</para>
 
+				</sect1>
+				<sect1 id ="Organisation">
+					<title>...von der Betreuung und Organisation im Praktikum</title>
+					<para>Erklärung der Spielregeln</para>
+				</sect1>
 
+        </chapter>
 <svg xmlns ="http://www.w3.org/2000/svg" width ="100%" height="5" version="1.1">
  <line x1="	1%" x2="99%" y1="2" y2="2" stroke="grey" stroke-width="2" stroke-linecap="butt"/>
 </svg>
         <chapter id ="Mancala">
 			<title>Mancala</title>
-				<sect1 id = "Spiel" start-indent="10mm" end-indent="10mm" text-indent="-10mm">
+				<sect1 id = "Spiel">
 					<title>Spiel</title>
-						<para start-indent="10mm" end-indent="10mm" text-indent="-10mm"> Worum geht es in dem Spiel, Historie?</para>
+						<para> Worum geht es in dem Spiel, Historie?</para>
 						<sect2>
 							<title>Spielarten</title>
 								<para>blub</para>
@@ -57,6 +71,11 @@
 									<para>blub</para>
 							</sect2>
 							
+				</sect1>
+				<sect1 id ="gui">
+					<title>GUI</title>
+						<para>bild von main</para>
+						<para>bild von spielbrett</para>
 				</sect1>
 				<sect1 id ="Sonstiges">
 					<title>Sonstiges</title>
@@ -101,7 +120,17 @@
         <chapter id ="Code">
 			<title>Code</title>
 				<sect1 id = "Mancala.dtd">
-					<title>Mancala.dtd</title>
+					<title>Mancala.dtd --> NICHT AKTUELL</title>
+						<sect2>
+							<title>Header</title>
+								<para> Ein Mancala Spiel besitzt mehrere Attribute, die das Spiel dokumentieren.</para>
+								<code> <![CDATA[<!ELEMENT game (finished,gameID,curplayer,slot*,player*)>]]></code>
+								<literallayout>Dabei steht <code>finished</code> für die Beendigung des Spiels.
+								Mit <code>gameID</code> wird, wie der Name schon sagt, eine ID festgelegt, sodass mehrere Spiele gleichzeitig gespielt werden können, ohne das die Eingaben vertauscht werden.
+								<code>curplayer</code> signalisiert den aktuellen Spieler.
+								Zudem hat ein Spiel  </literallayout>
+						</sect2>
+						
 						<sect2>
 						<title>Code von Game</title>
 							<para>Hier ein bisschen code von der Mancala.dtd</para>
@@ -117,50 +146,108 @@
 					<title>MancalaGameState.xml</title>
 						<sect2>
 							<title>Header</title>
-								<para>Hier Code vom Header</para>
-								<para>Erklärung</para>
+								<programlisting language="xml"><![CDATA[<game gameID = "0" lastCount = "0" clickedHouseID = "0"> 
+<finished>0</finished>
+<curplayer>1</curplayer>]]></programlisting>
+								<literallayout>Der Header definiert verschiedene Spielobjekte wie die <code>gameID</code>, wodurch mehrere Spiele gleichzeitig gespielt werden können ohne das die Eingaben vertauscht werden.
+								Wobei das Spiel mit der ID = 0 das Default Spiel ist und als Vorlage für alle anderen Spiele gilt. 
+								In <code>lastCount</code ><text color="#00FFFF"> wird die Anzahl des zuletzt geklickten Spielfeldes gespeichert um... Oder alle bisher gesammelten Steine.</text>
+								<code>clickedHouseID</code> verweist auf die ID des zuletzt geklickten Store bzw. 0 wenn noch nichts geklickt wurde.
+								</literallayout>
 						</sect2>
 						<sect2>
 							<title>House</title>
-								<para>Hier Code von House</para>
+								<programlisting language="xml"><![CDATA[<slot type = "house" ID = "0"> 
+<owner>1</owner> 
+<count>4</count> 
+<pos>0</pos>
+</slot>]]></programlisting>
 								<para>Erklärung</para>
 						</sect2>	
 						<sect2>
-							<title>Slot</title>
-								<para>Hier Code vom Slot</para>
+							<title>Store</title>
+								<programlisting language="xml"><![CDATA[<slot type = "store" ID = "6"> 
+<owner>1</owner> 
+<count>0</count> 
+</slot> ]]></programlisting>
 								<para>Erklärung</para>
 						</sect2>	
-						<sect2>
-							<title>Default und Game1</title>
-								<para>Hier Code vom Default und Game1</para>
-								<para>Erklärung</para>
-						</sect2>
 				</sect1>
 				<sect1 id ="MancalaXSLT.xsl">
 					<title>MancalaXSLT.xsl</title>
 						<sect2>
-							<title>Header</title>
-								<para>Hier Code vom Header</para>
+							<title>Javascript</title>
+								<para>Im Programm sind einige Javascript-Scripts:</para>
+								<sect3>
+								<title>clickhouse()</title>
+								<programlisting language="xml"><![CDATA[
+function clickhouse(ID)
+{
+	var gameIDlocal = '<xsl:value-of select="/*/@gameID"/>';
+	var loc= window.location;
+	window.location=("http://localhost:8984/clicked?ID="+ID+"&amp;gameID="+gameIDlocal);
+}]]></programlisting>
 								<para>Erklärung</para>
-						</sect2>
-						<sect2>
-							<title>loadcon()</title>
-								<para>Hier Code von loadcon()</para>
+								</sect3>
+								<sect3>
+								<title>loadcon()</title>
+								<programlisting language="xml"><![CDATA[		
+function loadcon()
+{
+	var loc2= window.location;
+	window.location="http://localhost:8984/loadcon";
+}]]></programlisting>
+		
 								<para>Erklärung</para>
+								</sect3>
+								<sect3>
+								<title>clicknewgame()</title>
+								<programlisting language="xml"><![CDATA[		
+function clicknewgame()
+{
+	var loc= window.location;
+	window.location="http://localhost:8984/clickednewgame";
+}]]></programlisting>
+		
+								<para>Erklärung</para>
+								</sect3>
 						</sect2>	
 						<sect2>
+										
 							<title>Body</title>
-								<para>Hier Code vom Body</para>
+<programlisting language="xml"><![CDATA[		
+<defs>      
+	<!-- Store	-->
+	<ellipse id="store" rx="5.5%" ry="29%" stroke-width="5" />
+	<!-- House player 2 -->
+	<circle id="house-p2" cy="17.5%" r="7%" stroke="black" stroke-width="5" fill="peru" />
+	<!-- House player 1 -->
+	<circle id="house-p1" cy="52.5%" r="7%" stroke="black" stroke-width="5" fill="peru" />
+	<!-- Button -->
+	<rect id="button" y="77%" width="15%" height="6%" stroke="black" stroke-width="5" fill="saddlebrown" />
+</defs>]]></programlisting>
 								<para>Erklärung</para>
 						</sect2>	
 						<sect2>
-							<title>Und so weiter</title>
-								<para>Hier Code von...</para>
+							<title>Houses</title>
+<programlisting language="xml"><![CDATA[		
+<use id="house-p1-1" xlink:href="#house-p1" x="18.75%" onclick="clickhouse(0)"/>
+<use id="house-p1-2" xlink:href="#house-p1" x="31.25%" onclick="clickhouse(1)"/>
+<use id="house-p1-3" xlink:href="#house-p1" x="43.75%" onclick="clickhouse(2)"/>
+<use id="house-p1-4" xlink:href="#house-p1" x="56.25%" onclick="clickhouse(3)"/>
+<use id="house-p1-5" xlink:href="#house-p1" x="68.75%" onclick="clickhouse(4)"/>
+<use id="house-p1-6" xlink:href="#house-p1" x="81.25%" onclick="clickhouse(5)"/>
+<use id="house-p2-1" xlink:href="#house-p2" x="18.75%" onclick="clickhouse(12)"/>
+<use id="house-p2-2" xlink:href="#house-p2" x="31.25%" onclick="clickhouse(11)"/>
+<use id="house-p2-3" xlink:href="#house-p2" x="43.75%" onclick="clickhouse(10)"/>
+<use id="house-p2-4" xlink:href="#house-p2" x="56.25%" onclick="clickhouse(9)"/>
+<use id="house-p2-5" xlink:href="#house-p2" x="68.75%" onclick="clickhouse(8)"/>
+<use id="house-p2-6" xlink:href="#house-p2" x="81.25%" onclick="clickhouse(7)"/>]]></programlisting>
 								<para>Erklärung</para>
 						</sect2>
 				</sect1>
-				<sect1 id ="andere datei">
-					<title>nächste Datei...</title>
+				<sect1 id ="mancalaMethodsworking.xqm">
+					<title>mancalaMethodsworking.xqm--SOBALD FERTIG</title>
 						<sect2>
 							<title>Header</title>
 								<para>Hier Code vom Header</para>
