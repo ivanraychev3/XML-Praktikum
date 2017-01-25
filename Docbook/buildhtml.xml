@@ -25,7 +25,7 @@
 
         <!-- - target: clean -->
         <target name="clean" description="Cleans up generated files.">
-                <delete dir="${output.dir}" />
+              <!--  <delete dir="${output.dir}" /> -->
         </target>
 
         <!-- - target: depends -->

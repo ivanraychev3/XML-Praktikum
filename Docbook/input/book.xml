@@ -25,7 +25,14 @@
 	<svg xmlns ="http://www.w3.org/2000/svg" width ="100%" height="5" version="1.1">
  		<line x1="	1%" x2="99%" y1="2" y2="2" stroke="grey" stroke-width="2" stroke-linecap="butt"/>
 	</svg>
+		   <mediaobject>
+                <imageobject>
+                        <imagedata align="center" fileref="images/Mancala.jpg"/>
+                </imageobject>
+                  <caption>Von: http://math2033.uark.edu/wiki/images/7/7f/Mancala.jpg</caption>
+        </mediaobject>
 		<chapter id ="Reflektion">
+	
 			<title>Reflektion</title>
 				<sect1 id = "Team">
 					<title>...vom Team</title>
@@ -41,41 +48,55 @@
 <svg xmlns ="http://www.w3.org/2000/svg" width ="100%" height="5" version="1.1">
  <line x1="	1%" x2="99%" y1="2" y2="2" stroke="grey" stroke-width="2" stroke-linecap="butt"/>
 </svg>
-        <chapter id ="Mancala">
-			<title>Mancala</title>
-				<sect1 id = "Spiel">
-					<title>Spiel</title>
-						<para> Worum geht es in dem Spiel, Historie?</para>
-						<sect2>
-							<title>Spielarten</title>
-								<para>blub</para>
-						</sect2>
-						<sect2>
-							<title>Historie</title>
-								<para>blub</para>
-							</sect2>
-				</sect1>
-				<sect1 id ="Spielregeln">
+<chapter id ="Mancala">
+<title>Mancala</title>
+<sect1 id = "Spiel">
+<title>Spiel</title>
+<para> Kalah Mancala ist ein Steinchen-Spiel mit 2 Spielern, welche das Ziel haben mehr Steinchen zu sammeln als der Gegner. 
+Gespielt werden mit 12 Mulden, der Untergrund spielt dabei keine Rolle.Von den 12 Mulden gehören 6 zu jedem Spieler, 
+wobei 5 davon Spielmulden und eine Gewinnmulde ist. Zu beginn sind in den insgesamt 10 Spielmulden jeweils 4 Spielsteine, 
+die durch geschickte Spielzüge in der eigenen Gewinnmulde landen.
+</para>
+</sect1>
+<sect1 id ="Spielregeln">
 					<title>Spielregeln</title>
-						<para>Erklräung der Spielregeln</para>
+						<para></para>
 							<sect2>
 								<title>Spielablauf</title>
-									<para>blub</para>
+									<para>Spieler 1 (untere Reihe) fängt an, in dem er auf eine Spielmulde klickt,welche sich in seiner Reihe befindet, wodurch die sich dort drin befindenen
+									Steine nacheinander in die darauf folgenden Mulden verteilt bis alle Steine verteilt sind. Dadurch erhöhen sich natürlich die Anzahl der Steine in den nachfolgenden Mulden. 
+									Dadurch ist die angeklickte Mulde dann leer. Spieler 2(obere Reihe) ist dann an der Reihe, welcher ebenfalls eine Spielmulde aus seiner Reihe anklickt.
+									Die Steine auch aus dieser Mulde werden auch verteilt. Abwechselnd werden dann die Mulden angeklickt und dadurch geleert. Alle Steine die in einer Gewinnmulde landen, sind gesichert und können nicht verteilt werden.
+									Das Spiel endet dann, wenn eine Reihe komplett geleert wurde. Die übrig gebliebenen Steine landen dann automatisch in der gegenüberliegenden Gewinnmulde. 
+									
+									</para>
 							</sect2>
 							<sect2>
 								<title>Gewinner</title>
-									<para>blub</para>
+									<para>Gewonnen hat derjenige, der am Ende die meisten Steinchen in seiner Gewinnmulde hat.</para>
 							</sect2>
 							<sect2>
 								<title>Sonderregeln</title>
-									<para>blub</para>
+									<para>Auch bei diesem Spiel gibt es ein paar Sonderregeln. Wie bereits erwähnt ehählt der Spieler, dessen Reihe zum Schluss nicht leer ist, alle übrig gebliebenen Steine.
+									Dazu gibt es noch ein paar weitere Sonderregeln. Zum einem landet der letzte Stein eines Spielzuges auf eine leere Spielmulde, so werden die Steine aus der gegenüberliegenden Mulde in die eigene Gewinnmulde geschoben.
+									Oder der letzte Spielstein, eines Spielzuges, landet in der eigenen Gewinnmulde, dann ist der Spieler nochmal dran und darf eine weitere Mulde leeren. </para>
 							</sect2>
 							
 				</sect1>
 				<sect1 id ="gui">
 					<title>GUI</title>
-						<para>bild von main</para>
-						<para>bild von spielbrett</para>
+			 <mediaobject>
+                <imageobject>
+                        <imagedata align="center" fileref="images/Start.jpg"/>
+                </imageobject>
+                  <caption>Menü-Ansicht</caption>
+       		 </mediaobject>
+								 <mediaobject>
+                <imageobject>
+                        <imagedata align="center" width="75%" fileref="images/Spiel.jpg"/>
+                </imageobject>
+                  <caption>Spiel-Ansicht</caption>
+       		 </mediaobject>
 				</sect1>
 				<sect1 id ="Sonstiges">
 					<title>Sonstiges</title>
@@ -110,7 +131,7 @@
 						</sect2>			
 				</sect1>
 				<sect1 id ="Sonstiges">
-					<title>Andere Diagremme?</title>
+					<title>Andere Diagramme?</title>
 						<para>Bla</para>
 				</sect1>
         </chapter>
